@@ -5,6 +5,7 @@ def reverse_sublist(l, i, j):
     for s in range(num_swaps):
         l[i + s], l[j - s] = l[j - s], l[i + s]
 
+
 def list_for_cost(n, c):
     # Min cost for n is (n-1) (1+1+1+... up to second last element).
     # Max cost for n is n+(n-1)+(n-2)+...+2 = (n-1)/2 * (n + 2) (arithmetic sum)
@@ -15,12 +16,12 @@ def list_for_cost(n, c):
     level = 0
     start_offset = 0
     end_offset = 0
-    remaining_cost = c - n + 1 # Subtract the min 1 cost at each level
+    remaining_cost = c - n + 1  # Subtract the min 1 cost at each level
     while remaining_cost:
         max_additional_cost_at_level = n - level - 1
         if remaining_cost >= max_additional_cost_at_level:
             reverse_sublist(l, start_offset, n - 1 - end_offset)
-            
+
             if level % 2 == 0:
                 # Even level, so increment end offset
                 end_offset += 1
@@ -36,11 +37,13 @@ def list_for_cost(n, c):
                 reverse_sublist(l, start_offset, start_offset + remaining_cost)
             else:
                 # Odd level, so apply offset from end_offset
-                reverse_sublist(l, n - 1 - end_offset - remaining_cost, n - 1 - end_offset)
+                reverse_sublist(l, n - 1 - end_offset -
+                                remaining_cost, n - 1 - end_offset)
 
             remaining_cost = 0
 
     return " ".join(map(str, l))
+
 
 def main():
     num_cases = int(input())
@@ -49,6 +52,7 @@ def main():
         n = int(case[0])
         c = int(case[1])
         print("Case #{:d}: {:s}".format(i+1, list_for_cost(n, c)))
+
 
 if __name__ == "__main__":
     main()

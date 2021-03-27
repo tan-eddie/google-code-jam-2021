@@ -5,6 +5,7 @@ def reverse_sublist(l, i, j):
     for s in range(num_swaps):
         l[i + s], l[j - s] = l[j - s], l[i + s]
 
+
 def cost(n, l):
     c = 0
     for i in range(n - 1):
@@ -18,12 +19,14 @@ def cost(n, l):
 
     return c
 
+
 def main():
     num_cases = int(input())
     for i in range(num_cases):
         n = int(input())
         l = [int(x) for x in input().split()]
         print("Case #{:d}: {:d}".format(i+1, cost(n, l)))
+
 
 if __name__ == "__main__":
     main()

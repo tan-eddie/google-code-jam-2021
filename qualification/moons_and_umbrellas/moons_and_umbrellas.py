@@ -64,6 +64,7 @@ def min_cost_subpattern(x, y, subpattern):
 
     return min(min_alt_cost, min_const_cost)
 
+
 def min_cost(x, y, pattern):
     cost = 0
     # Sum cost of each subpattern
@@ -77,14 +78,16 @@ def min_cost(x, y, pattern):
     cost += min_cost_subpattern(x, y, pattern[start:len(pattern)])
     return cost
 
+
 def main():
     num_cases = int(input())
     for i in range(num_cases):
         case = input().split()
-        x = int(case[0]) # cost of CJ
-        y = int(case[1]) # cost of JC
+        x = int(case[0])  # cost of CJ
+        y = int(case[1])  # cost of JC
         pattern = case[2]
         print("Case #{:d}: {:d}".format(i+1, min_cost(x, y, pattern)))
+
 
 if __name__ == "__main__":
     main()
