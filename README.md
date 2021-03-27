@@ -13,3 +13,5 @@ Questions were pretty interesting. Seems to be a sorting theme this year.
 - **Q5 Cheating Detection:** This one was tough, stats knowledge needed? Tried running simulations which led to interesting distributions. Luckily my heuristic method was able to pass test set 1. Does test set 2 require some statistical experiment analysis?
 
 ### Results:
+
+Rank 3556. Failed Median Sort test set 3 and Cheating Detection test set 2.
