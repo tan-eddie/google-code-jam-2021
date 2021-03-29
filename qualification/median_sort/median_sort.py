@@ -12,24 +12,39 @@ def query_median(i, j, k):
     return median
 
 
-# Inserts i in list l by querying in a bisecting manner.
-def bisection_insert(i, l, start, end):
-    mid = ((end - start) >> 1) + start
-    m = query_median(i, l[mid], l[mid+1])
-    if m == i:
-        l.insert(mid+1, i)
-    elif m == l[mid]:
-        # i belongs in starting half
-        if mid-1 < start:
+# Inserts i in list l using ternary search (split into 3 buckets)
+def ternary_insert(i, l, start, end):
+    # Split [start, end] interval into [start, a, b, end] and
+    # recursively call ternary insert in each subinterval
+    # [start, a], [a, b] and [b, end].
+    interval = (end - start) // 3
+
+    if interval == 0:
+        # end - start < 3 (i.e <=3 elements in [start, end])
+        a = start
+        b = start + 1
+    else:
+        a = start + interval
+        b = a + interval
+    median = query_median(i, l[a], l[b])
+    if median == i:
+        # i belongs in [a, b]
+        if (a+1) >= b:
+            l.insert(b, i)
+        else:
+            ternary_insert(i, l, a, b)
+    elif median == l[a]:
+        # i belongs in [start, a]
+        if a-1 < start:
             l.insert(start, i)
         else:
-            bisection_insert(i, l, start, mid)
-    else:
-        # i belongs in ending half
-        if mid+1 >= end:
+            ternary_insert(i, l, start, a)
+    elif median == l[b]:
+        # i belongs in [b, end]
+        if b+1 > end:
             l.insert(end+1, i)
         else:
-            bisection_insert(i, l, mid, end)
+            ternary_insert(i, l, b, end)
 
 
 # n: number of elements to sort
@@ -43,14 +58,14 @@ def process_test_case(n):
     else:
         l = [1, 3, 2]
 
-    # Run insertion algorithm with bisect queries
-    # Note: this passed test sets 1 and 2 but I don't think it'll
-    # pass 3 because max number of queries needed for that set is
-    # 1 + ceil(log2(4)) + ceil(log2(5)) + ... + ceil(log2(50))
-    # = 235
-    # which is >170 per test case in test set 3.
+    # Run insertion sort with ternary search.
+    # Note: It should pass all test sets because max number of
+    # queries needed for n = 50 is:
+    # 1 + ceil(log3(4)) + ceil(log3(5)) + ... + ceil(log3(50))
+    # = 159
+    # which is <170 per test case in test set 3.
     for i in range(4, n+1):
-        bisection_insert(i, l, 0, len(l)-1)
+        ternary_insert(i, l, 0, len(l)-1)
 
     print(" ".join(map(str, l)))
     sys.stdout.flush()
