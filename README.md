@@ -28,4 +28,4 @@ Difficult as per usual.
 
 ### Results:
 
-Rank 3600. Failed Prime Time test sets 2 and 3 and did not attempt Hacked Exam.
+Rank 3458. Failed Prime Time test sets 2 and 3 and did not attempt Hacked Exam.
