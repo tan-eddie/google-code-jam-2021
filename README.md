@@ -15,3 +15,17 @@ Questions were pretty interesting. Seems to be a sorting theme this year.
 ### Results:
 
 Rank 3556. Failed Median Sort test set 3 and Cheating Detection test set 2.
+
+## Round 1A (10 April 2021)
+
+### Post attempt reflection
+
+Difficult as per usual.
+
+- **Q1 Append Sort:** Not too difficult but some edge cases not present in the sample data tripped me up.
+- **Q2 Prime Time:** `O(2^n)` naive solution is easy and works for test set 1. No idea how to continue - need some clever way to work out how to divide into the two groups.
+- **Q3 Hacked Exam:** didn't even know where to begin
+
+### Results:
+
+Rank 3600. Failed Prime Time test sets 2 and 3 and did not attempt Hacked Exam.
