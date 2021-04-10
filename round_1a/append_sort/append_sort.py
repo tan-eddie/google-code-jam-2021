@@ -4,16 +4,16 @@ def solve(n, l):
     prev = l[0]
     for i in range(1, len(l)):
         curr = l[i]
+        max_append_value = 1
         while curr <= prev:
             curr *= 10
+            max_append_value *= 10
+            operations += 1
             diff = prev - curr
-            if diff >= 0 and diff < 9:
+            if diff >= 0 and diff + 1 < max_append_value:
                 # Append diff + 1
                 curr += diff + 1
-                operations += 1
-            else:
-                # Append 0
-                operations += 1
+
         prev = curr
     return operations
 
